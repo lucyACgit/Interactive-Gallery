@@ -67,6 +67,14 @@ h1 {
   font-size: 1.2em;
 }
 
+#modal {
+  display: none;
+}
+
+#modal.show {
+  display: flex;
+}
+
 @media (max-width: 600px) {
   #gallery {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));

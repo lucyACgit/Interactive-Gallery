@@ -78,8 +78,8 @@ const galleryImages = [
   },
 ];
 
-// Use map to create and append images
-galleryImages.map((imageData) => {
+// Use forEach to create element and append images to the gallery
+galleryImages.forEach((imageData) => {
   const img = document.createElement("img");
   img.src = imageData.src;
   img.setAttribute("data-hd", imageData.hd);
@@ -87,24 +87,22 @@ galleryImages.map((imageData) => {
     "data-caption",
     `${imageData.name}: ${imageData.description}`,
   );
-  img.setAttribute("data-name", imageData.name);
-  img.setAttribute("data-description", imageData.description);
   img.alt = imageData.name;
   gallery.appendChild(img);
 });
 
 // Event delegation for gallery
-gallery.addEventListener("click", (event) => {
-  if (event.target.tagName === "IMG") {
-    const hdSrc = event.target.getAttribute("data-hd");
-    const caption = event.target.getAttribute("data-caption");
+gallery.addEventListener("click", function (e) {
+  if (e.target.tagName === "IMG") {
+    const hdSrc = e.target.getAttribute("data-hd");
+    const caption = e.target.getAttribute("data-caption");
     modalImage.src = hdSrc;
     modalCaption.textContent = caption;
-    modal.style.display = "flex";
+    modal.classList.add("show");
   }
 });
 
-// Hide modal when clicking on the HD image
-modalImage.addEventListener("click", () => {
-  modal.style.display = "none";
+// Close modal when clicking on the image
+modalImage.addEventListener("click", function () {
+  modal.classList.remove("show");
 });
